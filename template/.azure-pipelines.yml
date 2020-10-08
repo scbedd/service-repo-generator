@@ -1,0 +1,83 @@
+# variables associated with build definition
+# $(vstsOptionsAccessToken)
+# $(vstsOptionsAccountName)
+# $(githubOptionsAccessToken)
+# $(githubOptionsAccountName)
+# $(githubOptionsAccountEmail)
+# $(targetRepoBranch)
+# $(vstsOptionsAccessToken)
+# $(vstsOptionsAccountName)
+# $(githubOptionsAccessToken)
+# $(githubOptionsAccountName)
+# $(githubOptionsAccountEmail)
+
+pool:
+  name: Azure Pipelines
+  timeoutInMinutes: 240
+
+variables:
+  params: "{\"output_path\":\"docs-ref-autogen\",\"target_repo\":{\"url\":\"https://github.com/Azure/azure-docs-sdk-java\",\"branch\":\"smoke-test\"}}"
+
+steps:
+- task: PowerShell@2
+  displayName: 'Switch To zulu-11'
+  inputs:
+    targetType: filePath
+    filePath: ./Java/SwithJavaVersion.ps1
+
+- task: PowerShell@2
+  displayName: CheckJavaEnviroment
+  inputs:
+    targetType: filePath
+    filePath: ./Java/CheckJavaEnviroment.ps1
+
+- powershell: |
+   REG QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled
+   REG ADD HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 1
+   REG QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled
+  displayName: 'Disable windows long path limitation'
+
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 4.3.0'
+  inputs:
+    versionSpec: 4.3.0
+
+- task: AzureKeyVault@1
+  displayName: 'Azure Key Vault: ReferenceAutomation-Prod'
+  inputs:
+    azureSubscription: 'Open Publishing - Portal Production (4e8a3c84-182c-4415-ba08-0b22195218ae)'
+    KeyVaultName: 'ReferenceAutomation-Prod'
+
+- task: PowerShell@1
+  displayName: 'git pull'
+  inputs:
+    scriptName: common/CI.pull.ps1
+    arguments: '-vstsOptionsAccessToken $(vstsOptionsAccessToken) -vstsOptionsAccountName $(vstsOptionsAccountName) -githubOptionsAccessToken $(githubOptionsAccessToken) -githubOptionsAccountName $(githubOptionsAccountName) -githubOptionsAccountEmail $(githubOptionsAccountEmail) -paramsJson ''$(params)'' -targetRepoBranch ''$(targetRepoBranch)'''
+
+- powershell: |
+   Write-Host "Cleaning up stable folder"
+   rm "$(Build.SourcesDirectory)/target_repo/docs-ref-autogen/*"
+   
+   Write-Host "Cleaning up preview folder"
+   rm "$(Build.SourcesDirectory)/target_repo/preview/docs-ref-autogen/*"
+  displayName: 'Remove Existing Items to Bypass "Deleted Items" error'
+
+- task: PowerShell@1
+  displayName: 'Run Java SDK CI Script'
+  inputs:
+    scriptName: 'Java/run_v3.ps1'
+    arguments: '-vstsOptionsAccessToken $(vstsOptionsAccessToken) -vstsOptionsAccountName $(vstsOptionsAccountName) -githubOptionsAccessToken $(githubOptionsAccessToken) -githubOptionsAccountName $(githubOptionsAccountName) -githubOptionsAccountEmail $(githubOptionsAccountEmail) -paramsJson ''$(params)'' '
+
+- powershell: 'pip install pyyaml'
+  displayName: 'Install pyyaml'
+
+- task: PythonScript@0
+  displayName: 'Merge Un-Migratable Legacy Packages To Stable ToC'
+  inputs:
+    scriptPath: '$(Build.SourcesDirectory)/target_repo/update_toc.py'
+
+- task: PowerShell@1
+  displayName: 'git push'
+  inputs:
+    scriptName: common/CI.push.ps1
+    arguments: '-paramsJson ''$(params)'''

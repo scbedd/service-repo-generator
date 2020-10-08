@@ -1,0 +1,15 @@
+- name: Azure
+  tocHref: /
+  topicHref: /azure
+  items:
+  - name: Developer
+    tocHref: /
+    topicHref: /azure/developer
+    items:
+    - name: {{ capitalized_language }}
+      tocHref: /
+      topicHref: /azure/developer/ {{ lowercase_language }}   
+      items:
+      - name: Java SDK
+        tocHref: /azure/developer/python/sdk/{{ service_label }}
+        topicHref: /azure/developer/python/sdk/{{ service_label }}/overview

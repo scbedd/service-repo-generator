@@ -1,0 +1,99 @@
+{
+    "build": {
+        "markdownEngineName": "markdig",
+        "content": [
+            {
+                "files": [
+                    "**/*.md",
+                    "**/*.yml"
+                ],
+                "dest": "python/sdk/storage",
+                "group": "storage-py-v12",
+                "src": "v12/docs-ref-autogen",
+                "exclude": [
+                    "**/obj/**",
+                    "**/includes/**",
+                    "README.md",
+                    "**/toc.md",
+                    "**/toc.yml",
+                    "LICENSE",
+                    "LICENSE-CODE",
+                    "ThirdPartyNotices"
+                ]
+            },
+            {
+                "files": [
+                    "storage-blob-readme.md",
+                    "storage-file-datalake-readme.md",
+                    "storage-file-share-readme.md",
+                    "storage-fileshare-readme.md",
+                    "storage-queue-readme.md"
+                ],
+                "src": "service_readme/docs-ref-services",
+                "dest": "python/sdk/storage",
+                "version": "storage-py-v12",
+                "group": "storage-py-v12"
+            },
+            {
+                "files": [
+                    "overview.md"
+                ],
+                "src": "service_overview/docs-ref-services",
+                "dest": "python/sdk/storage",
+                "version": "storage-py-v12",
+                "group": "storage-py-v12"
+            },
+            {
+                "files": [
+                    "**/toc.md",
+                    "**/toc.yml"
+                ],
+                "src": "v12/docs-ref-autogen",
+                "dest": "python/sdk/storage",
+                "group": "storage-py-v12"
+            },
+            {
+                "files": [
+                    "**/*.yml"
+                ],
+                "src": "breadcrumb",
+                "group": "storage-py-v12",
+                "dest": "storage_v12_breadcrumb",
+                "exclude": [
+                    "**/obj/**",
+                    "**/includes/**"
+                ]
+            },
+        ],
+        "resource": [
+            {
+                "files": [
+                    "**/*.png",
+                    "**/*.jpg"
+                ],
+                "exclude": [
+                    "**/obj/**",
+                    "**/includes/**"
+                ]
+            }
+        ],
+        "overwrite": [],
+        "externalReference": [],
+        "globalMetadata": {
+            "breadcrumb_path": "~/breadcrumb/toc.yml"
+        },
+        "groups": {
+            {% for group in groups %}
+            "{{ group.moniker }}": {
+                "dest": "{{ group.moniker }}",
+                "moniker_range": "{{ group.moniker }}"
+            }
+            {{ "," if not loop.last }}
+            {% endfor %}
+        },
+        "fileMetadata": {},
+        "template": [],
+        "dest": "_site",
+        "apiPlatform": "{{ lowercase_language }}",
+    }
+}
