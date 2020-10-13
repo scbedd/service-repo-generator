@@ -1,0 +1,97 @@
+{
+    "docsets_to_publish": [
+      {
+        "docset_name": "{{ docset_name }}",
+        "build_source_folder": ".",
+        "build_output_subfolder": "{{ docset_name }}",
+        "locale": "en-us",
+        "monikers": [],
+        "moniker_ranges": [ {{ monikers_list|join(', ')}} ],
+        "open_to_public_contributors": false,
+        "type_mapping": {
+          "Conceptual": "Content",
+          "ManagedReference": "Content",
+          "RestApi": "Content",
+          "UniversalReference": "Content"
+        },
+        "build_entry_point": "docs",
+        "template_folder": "_themes",
+        "base_path": "azure/developer",
+        "customized_template_paths": [
+            "_dependentPackages/memberpage.plugins/content"
+        ],
+        "customized_tasks": {
+            "docset_prebuild": [
+                "_dependentPackages/CommonPlugins/tools/SplitTOC.ps1",
+                "_dependentPackages/CommonPlugins/tools/JoinTOC.ps1"
+            ]
+        },
+        "site_name": "Docs"
+      }
+    ],
+    "notification_subscribers": [
+        "azuresdkdocreview@microsoft.com",
+        "scbedd@microsoft.com"
+    ],
+    "sync_notification_subscribers": [],
+    "branches_to_filter": [],
+    "git_repository_branch_open_to_public_contributors": "master",
+    "skip_source_output_uploading": false,
+    "need_preview_pull_request": true,
+    "contribution_branch_mappings": {},
+    "dependent_repositories": [
+      {
+        "path_to_root": "_themes",
+        "url": "https://github.com/Microsoft/templates.docs.msft",
+        "branch": "master",
+        "branch_mapping": {}
+      }
+    ],
+    "branch_target_mapping": {},
+    "need_generate_pdf_url_template": false,
+    "dependent_packages": [
+        {
+          "id": "opbuild.templates.uref",
+          "nuget_feed": "https://www.myget.org/F/op/api/v2",
+          "path_to_root": "_dependentPackages/uref.plugins",
+          "target_framework": "net45",
+          "version": "latest"
+        },
+        {
+          "id": "Microsoft.OpenPublishing.CommonPlugins",
+          "nuget_feed": "https://www.myget.org/F/op/api/v2",
+          "path_to_root": "_dependentPackages/CommonPlugins",
+          "target_framework": "net45",
+          "version": "latest"
+        },
+        {
+          "path_to_root": "_dependentPackages/memberpage.plugins",
+          "target_framework": "net45",
+          "version": "latest",
+          "id": "memberpage.plugins",
+          "nuget_feed": "https://www.myget.org/F/docfx/api/v2"
+        }
+      ],
+      "SplitTOC": [
+        {% for moniker in moniker_list %}
+        "{{ docset_name }}/{{ moniker }}/docs-ref-autogen/toc.yml"{{ "," if not loop.last }}
+        {% endfor %}
+      ],
+      "JoinTOCPlugin": [
+        {% for moniker in moniker_list %}
+        {
+            "TopLevelTOC": "docs-ref-mapping/reference-{{ }}.yml",
+            "ReferenceTOC": "{{ docset_name }}/{{ moniker }}/docs-ref-autogen/toc.yml",
+            "ReferenceTOCUrl": "/{{ language }}/api/azure/toc.json",
+            "OutputFolder": "{{ docset_name }}/{{moniker.name}}/overview",
+            "HideEmptyNode": false,
+            "ContainerPageMetadata": {
+                "langs": [
+                "{{ language }}"
+                ],
+                "open_to_public_contributors": false
+            }
+        }{{ "," if not loop.last }}
+        {% endfor %}
+    ]
+}

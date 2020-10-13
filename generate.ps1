@@ -1,0 +1,1 @@
+python ./generation/generate.py

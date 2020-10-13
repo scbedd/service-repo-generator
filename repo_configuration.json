@@ -1,8 +1,9 @@
 {
-    "docset_name": "<name of your docset>",
+    "docset_name": "storage-java",
+    "docset_base_path": "azure/developer",
     "monikers": [
-        "",""
-    ], 
-    "": ""
+        "storagev12","storagev10"
+    ],
+    "language": "java"
 }
 

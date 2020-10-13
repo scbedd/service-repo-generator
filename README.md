@@ -9,3 +9,15 @@ A template project used to generate MicrosoftDocs doc repositories. Given a litt
 4. Ensure a python version newer than 3 is present/activated. Invoke `pip install -r requirements.txt`
 5. Invoke the script to generate contents (locally viewable, gitignored) and copy over to the target `doc repo`.
 
+
+# Example Valid Repo Configuraition
+```
+{
+    "docset_name": "storage-java",
+    "docset_base_path": "azure/developer",
+    "monikers": [
+        "storagev12","storagev10"
+    ],
+    "language": "java"
+}
+```

@@ -63,7 +63,7 @@
                     "**/obj/**",
                     "**/includes/**"
                 ]
-            },
+            }
         ],
         "resource": [
             {
@@ -83,10 +83,10 @@
             "breadcrumb_path": "~/breadcrumb/toc.yml"
         },
         "groups": {
-            {% for group in groups %}
-            "{{ group.moniker }}": {
-                "dest": "{{ group.moniker }}",
-                "moniker_range": "{{ group.moniker }}"
+            {% for moniker in moniker_list %}
+            "{{ moniker }}": {
+                "dest": "{{ moniker }}",
+                "moniker_range": "{{ moniker }}"
             }
             {{ "," if not loop.last }}
             {% endfor %}
