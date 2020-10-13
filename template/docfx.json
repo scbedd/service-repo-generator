@@ -85,6 +85,6 @@
         "fileMetadata": {},
         "template": [],
         "dest": "_site",
-        "apiPlatform": "{{ config.language }}",
+        "apiPlatform": "{{ config.language }}"
     }
 }
