@@ -152,6 +152,9 @@ class BaseRepoConfiguration:
         if os.path.exists(self.output_folder):
             shutil.rmtree(self.output_folder)
 
+    def get_moniker_range(self):
+        return ", ".join(['"' + moniker + '"' for moniker in self.monikers])
+
 
     def capitalize(self, input):
         """ Capitalizes the first letter of a word or phrase. 

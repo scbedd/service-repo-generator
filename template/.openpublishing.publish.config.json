@@ -6,7 +6,7 @@
         "build_output_subfolder": "{{ config.docset_name }}",
         "locale": "en-us",
         "monikers": [],
-        "moniker_ranges": [ {{ config.monikers|join(', ')}} ],
+        "moniker_ranges": [ {{ config.get_moniker_range() }} ],
         "open_to_public_contributors": false,
         "type_mapping": {
           "Conceptual": "Content",
@@ -82,7 +82,7 @@
         {
             "TopLevelTOC": "docs-ref-mapping/reference-{{ moniker }}.yml",
             "ReferenceTOC": "{{ config.docset_name }}/{{ moniker }}/docs-ref-autogen/toc.yml",
-            "ReferenceTOCUrl": "/{{ config.languagee }}/sdk/{{ config.service_label }}/toc.json",
+            "ReferenceTOCUrl": "/{{ config.language }}/sdk/{{ config.service_label }}/toc.json",
             "OutputFolder": "{{ config.docset_name }}/{{ moniker }}/overview",
             "HideEmptyNode": false,
             "ContainerPageMetadata": {
