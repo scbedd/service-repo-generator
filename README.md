@@ -1,6 +1,8 @@
 # service-repo-generator
 A template project used to generate MicrosoftDocs doc repositories. Given a little bit of setup.
 
+Specifically, it generates repositories that follow the "service oriented" design.
+
 # Steps
 
 1. Follow the [onboarding documentation]() till you've populated `monikers`, `docsets`, and have created a `doc repo`.
@@ -11,6 +13,7 @@ A template project used to generate MicrosoftDocs doc repositories. Given a litt
 
 **NOTE**: The `repo_configuration.json` MUST exist at the root of the repo for the automation to work correctly.
 
+There are example repo configurations present in the `example_repo_configurations` folder.
 
 # Example Valid Repo Configuraition
 ```

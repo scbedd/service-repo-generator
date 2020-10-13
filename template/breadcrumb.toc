@@ -1,0 +1,15 @@
+- name: Azure
+  tocHref: /
+  topicHref: /azure
+  items:
+  - name: Developer
+    tocHref: /
+    topicHref: /azure/developer
+    items:
+    - name: {{ config.capitalize(config.language) }}
+      tocHref: /
+      topicHref: /azure/developer/{{ config.language }}   
+      items:
+      - name: Java SDK
+        tocHref: /azure/developer/{{ config.language }}/sdk/{{ config.service_label }}
+        topicHref: /azure/developer/{{ config.language }}/sdk/{{ config.service_label }}/overview

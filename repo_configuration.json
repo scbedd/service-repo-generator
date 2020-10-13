@@ -6,6 +6,6 @@
     ],
     "language": "java",
     "lang": "java",
-    "service-label": "storage"
+    "service_label": "storage"
 }
 

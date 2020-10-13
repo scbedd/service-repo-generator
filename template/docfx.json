@@ -40,8 +40,21 @@
                 "src": "{{ moniker }}/docs-ref-autogen",
                 "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
                 "group": "{{ moniker }}"
+            },
+            {
+                "files": [
+                    "**/*.yml"
+                ],
+                "src": "breadcrumb",
+                "group": "{{ moniker }}",
+                "dest": "{{ (moniker.replace('-','_') + '_breadcrumb') }}",
+                "exclude": [
+                    "**/obj/**",
+                    "**/includes/**"
+                ]
             }{{ "," if not loop.last }}
             {% endfor %}
+
         ],
         "resource": [
             {
@@ -72,6 +85,6 @@
         "fileMetadata": {},
         "template": [],
         "dest": "_site",
-        "apiPlatform": "{{ config.language.lower() }}",
+        "apiPlatform": "{{ config.language }}",
     }
 }
