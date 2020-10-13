@@ -1,0 +1,9 @@
+{
+    "docset_name": "",
+    "docset_base_path": "azure/developer",
+    "monikers": [
+        "",""
+    ],
+    "language": "dotnet",
+    "lang": "csharp" 
+}

@@ -9,6 +9,8 @@ A template project used to generate MicrosoftDocs doc repositories. Given a litt
 4. Ensure a python version newer than 3 is present/activated. Invoke `pip install -r requirements.txt`
 5. Invoke the script to generate contents (locally viewable, gitignored) and copy over to the target `doc repo`.
 
+**NOTE**: The `repo_configuration.json` MUST exist at the root of the repo for the automation to work correctly.
+
 
 # Example Valid Repo Configuraition
 ```

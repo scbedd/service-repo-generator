@@ -2,14 +2,15 @@
     "build": {
         "markdownEngineName": "markdig",
         "content": [
+            {% for moniker in config.monikers %}
             {
                 "files": [
                     "**/*.md",
                     "**/*.yml"
                 ],
-                "dest": "python/sdk/storage",
-                "group": "storage-py-v12",
-                "src": "v12/docs-ref-autogen",
+                "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
+                "group": "{{ moniker }}",
+                "src": "{{ moniker }}/docs-ref-autogen",
                 "exclude": [
                     "**/obj/**",
                     "**/includes/**",
@@ -23,47 +24,24 @@
             },
             {
                 "files": [
-                    "storage-blob-readme.md",
-                    "storage-file-datalake-readme.md",
-                    "storage-file-share-readme.md",
-                    "storage-fileshare-readme.md",
-                    "storage-queue-readme.md"
+                    "**/*.md",
+                    "**/*.yml"
                 ],
-                "src": "service_readme/docs-ref-services",
-                "dest": "python/sdk/storage",
-                "version": "storage-py-v12",
-                "group": "storage-py-v12"
-            },
-            {
-                "files": [
-                    "overview.md"
-                ],
-                "src": "service_overview/docs-ref-services",
-                "dest": "python/sdk/storage",
-                "version": "storage-py-v12",
-                "group": "storage-py-v12"
+                "src": "docs-ref-services/{{ moniker }}",
+                "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
+                "version": "{{ moniker }}",
+                "group": "{{ moniker }}"
             },
             {
                 "files": [
                     "**/toc.md",
                     "**/toc.yml"
                 ],
-                "src": "v12/docs-ref-autogen",
-                "dest": "python/sdk/storage",
-                "group": "storage-py-v12"
-            },
-            {
-                "files": [
-                    "**/*.yml"
-                ],
-                "src": "breadcrumb",
-                "group": "storage-py-v12",
-                "dest": "storage_v12_breadcrumb",
-                "exclude": [
-                    "**/obj/**",
-                    "**/includes/**"
-                ]
-            }
+                "src": "{{ moniker }}/docs-ref-autogen",
+                "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
+                "group": "{{ moniker }}"
+            }{{ "," if not loop.last }}
+            {% endfor %}
         ],
         "resource": [
             {
@@ -83,7 +61,7 @@
             "breadcrumb_path": "~/breadcrumb/toc.yml"
         },
         "groups": {
-            {% for moniker in moniker_list %}
+            {% for moniker in config.monikers %}
             "{{ moniker }}": {
                 "dest": "{{ moniker }}",
                 "moniker_range": "{{ moniker }}"
@@ -94,6 +72,6 @@
         "fileMetadata": {},
         "template": [],
         "dest": "_site",
-        "apiPlatform": "{{ lowercase_language }}",
+        "apiPlatform": "{{ config.language.lower() }}",
     }
 }

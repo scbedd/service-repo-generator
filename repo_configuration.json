@@ -4,6 +4,8 @@
     "monikers": [
         "storagev12","storagev10"
     ],
-    "language": "java"
+    "language": "java",
+    "lang": "java",
+    "service-label": "storage"
 }
 

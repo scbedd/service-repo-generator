@@ -1,12 +1,12 @@
 {
     "docsets_to_publish": [
       {
-        "docset_name": "{{ docset_name }}",
+        "docset_name": "{{ config.docset_name }}",
         "build_source_folder": ".",
-        "build_output_subfolder": "{{ docset_name }}",
+        "build_output_subfolder": "{{ config.docset_name }}",
         "locale": "en-us",
         "monikers": [],
-        "moniker_ranges": [ {{ monikers_list|join(', ')}} ],
+        "moniker_ranges": [ {{ config.monikers|join(', ')}} ],
         "open_to_public_contributors": false,
         "type_mapping": {
           "Conceptual": "Content",
@@ -73,21 +73,21 @@
         }
       ],
       "SplitTOC": [
-        {% for moniker in moniker_list %}
-        "{{ docset_name }}/{{ moniker }}/docs-ref-autogen/toc.yml"{{ "," if not loop.last }}
+        {% for moniker in config.monikers %}
+        "{{ config.docset_name }}/{{ moniker }}/docs-ref-autogen/toc.yml"{{ "," if not loop.last }}
         {% endfor %}
       ],
       "JoinTOCPlugin": [
-        {% for moniker in moniker_list %}
+        {% for moniker in config.monikers %}
         {
-            "TopLevelTOC": "docs-ref-mapping/reference-{{ }}.yml",
-            "ReferenceTOC": "{{ docset_name }}/{{ moniker }}/docs-ref-autogen/toc.yml",
-            "ReferenceTOCUrl": "/{{ language }}/api/azure/toc.json",
-            "OutputFolder": "{{ docset_name }}/{{moniker.name}}/overview",
+            "TopLevelTOC": "docs-ref-mapping/reference-{{ moniker }}.yml",
+            "ReferenceTOC": "{{ config.docset_name }}/{{ moniker }}/docs-ref-autogen/toc.yml",
+            "ReferenceTOCUrl": "/{{ config.languagee }}/sdk/{{ config.service_label }}/toc.json",
+            "OutputFolder": "{{ config.docset_name }}/{{ moniker }}/overview",
             "HideEmptyNode": false,
             "ContainerPageMetadata": {
                 "langs": [
-                "{{ language }}"
+                "{{ config.lang }}"
                 ],
                 "open_to_public_contributors": false
             }

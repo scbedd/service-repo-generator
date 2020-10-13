@@ -1,4 +1,7 @@
 import json
+from jinja2 import template
+import os
+import shutil
 
 # values
 
@@ -14,6 +17,13 @@ class BaseRepoConfiguration:
     Any language-specific implementations should be handled in inheriting classes.
     """
     def __init__(self, path_to_config):
+        _process_configuration(self, path_to_config)
+
+        # general 
+        self.root_dir = os.path.join(os.path.abspath(path_to_config), '..')
+        self.output_folder = os.path.join(self.root_dir, 'output')
+
+    def _process_configuration(self, path_to_config):
         if path_to_config:
             with open(path_to_config, 'r', encoding='utf-8') as f:
                 self.json_config = json.load(f)
@@ -28,6 +38,9 @@ class BaseRepoConfiguration:
         
         self.monikers = self.json_config["monikers"]
         self.language = self.json_config["language"]
+        self.lang = self.json_config["lang"]
+        self.service_label = self.json_config["service_label"]
+
 
     def process_docfx_template(self):
         """ Used to process the docfx template into a language specific string. 
@@ -35,7 +48,7 @@ class BaseRepoConfiguration:
 
         Returns String
         """
-        pass
+        
 
     def process_openpublishing_config(self):
         """ Used to process the open publishing config for the repo configuration currently set.
@@ -43,13 +56,43 @@ class BaseRepoConfiguration:
 
         Returns String
         """
-        pass
+        print("Base Repo Configuration openpublishing processing")
 
     def process_repo_structure(self):
         """ Used to create the basic file structure of the repo. Places the populated templates in the appropriate locations within the _output
         directory.
 
+        Standard Output
+        /output
+            .openpublishing.publish.config.json
+            /<docset name>/
+                docfx.json
+                /<moniker_1>/
+                /<moniker_n>/
+                /docs-ref-services/<moniker_n>/
+
+
         Returns None
         """
-        pass
+        self._cleanup_output_folder()
+        
+        os.mkdir(self.output_folder)
+        os.mkdir(os.path.join(self.output_folder, 'docs-ref-services'))
+
+
+
+    def _cleanup_output_folder(self):
+        if os.path.exists(self.output_folder)
+            shutil.rmtree(self.output_folder)
+
+    def capitalize(self, input):
+        """ Capitalizes the first letter of a word or phrase. 
+        Returns String
+        """
+        if input:
+            return input[0].upper + input[1:]
+        else:
+            return input
+        
+
     
