@@ -9,11 +9,11 @@ Specifically, it generates repositories that follow the "service oriented" desig
 2. Clone this repository and the generated doc repo. (henceforce known as `doc-repo`)
 3. Evaluate the target documentation repo. Populate the `repo_configuration.json` with targeting information relevant to this PR.
 4. Ensure a python version newer than 3 is present/activated. Invoke `pip install -r requirements.txt`
-5. Invoke the script to generate contents (locally viewable, gitignored) and copy over to the target `doc repo`.
+5. Invoke `python ./generation/generate.py` (locally viewable, gitignored) and copy over to the target `doc repo`. Or execute `generate.ps1`.
 
 **NOTE**: The `repo_configuration.json` MUST exist at the root of the repo for the automation to work correctly.
 
-There are example repo configurations present in the `example_repo_configurations` folder.
+Examples of configurations for all supported languages exist in the `example_repo_configurations` folder. Merely copy their contents on `repo_configuration.json` prior to invoking Step 5.
 
 # Example Valid Repo Configuraition
 ```
@@ -23,6 +23,8 @@ There are example repo configurations present in the `example_repo_configuration
     "monikers": [
         "storagev12","storagev10"
     ],
-    "language": "java"
+    "language": "java",
+    "lang": "java",
+    "service_label": "storage"
 }
 ```

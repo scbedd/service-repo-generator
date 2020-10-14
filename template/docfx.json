@@ -5,6 +5,14 @@
             {% for moniker in config.monikers %}
             {
                 "files": [
+                  "**/*.yml"
+                ],
+                "src": "{{ moniker }}/docs-ref-autogen/overview",
+                "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
+                "group": "{{ moniker }}"
+            },
+            {
+                "files": [
                     "**/*.md",
                     "**/*.yml"
                 ],
