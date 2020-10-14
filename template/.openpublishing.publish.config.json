@@ -2,7 +2,7 @@
     "docsets_to_publish": [
       {
         "docset_name": "{{ config.docset_name }}",
-        "build_source_folder": ".",
+        "build_source_folder": "{{ config.docset_name }}",
         "build_output_subfolder": "{{ config.docset_name }}",
         "locale": "en-us",
         "monikers": [],
