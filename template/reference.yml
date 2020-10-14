@@ -1,0 +1,11 @@
+- name: Reference
+  uid: azure.{{ config.language }}.sdk.landingpage.reference
+  landingPageType: Root
+  expanded: false
+  items:
+    # other services go HERE
+  - name: Other
+    uid: azure.{{ config.language }}.sdk.landingPage.services.other
+    landingPageType: Service
+    children:
+    - '*'

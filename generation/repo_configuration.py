@@ -17,11 +17,13 @@ class BaseRepoConfiguration:
         self.docs_ref_services = os.path.join(self.docset_folder, 'docs-ref-services')
         self.breadcrumb_folder = os.path.join(self.docset_folder, 'breadcrumb')
         self.ci_config_folder = os.path.join(self.output_folder, 'ci-configs')
+        self.mapping_folder = os.path.join(self.output_folder, 'docs-ref-mapping')
 
         self.docfx_dest = os.path.join(self.docset_folder , 'docfx.json')
         self.openpublishing_dest = os.path.join(self.output_folder, '.openpublishing.publish.config.json')
         self.breadcrumb_dest = os.path.join(self.breadcrumb_folder, 'toc.yml')
         self.package_dest = os.path.join(self.output_folder, 'package.json')
+        
 
     def _process_configuration(self, path_to_config):
         if path_to_config:
@@ -101,8 +103,6 @@ class BaseRepoConfiguration:
             f.write(populated_template)
 
 
-
-
     def process_repo_structure(self):
         """ Used to create the basic file structure of the repo. Places the populated templates in the appropriate locations within the _output
         directory.
@@ -148,6 +148,25 @@ class BaseRepoConfiguration:
 
         print('Creating breadcrumb folder: {}'.format(self.breadcrumb_folder))
         os.mkdir(self.breadcrumb_folder)
+
+        print('Creating mapping folder: {}'.format(self.mapping_folder))
+        os.mkdir(self.mapping_folder)
+
+
+    def process_reference_yml(self):
+        reference_yml = os.path.join(self.root_dir, 'template', 'reference.yml')
+        with open(reference_yml, 'r', encoding='utf-8') as f:
+            template_string = f.read()
+
+        template = Template(template_string)
+        return template.render(config=self)
+
+
+    def write_reference_yml(self):
+        populated_template = self.process_reference_yml()
+        for moniker in self.monikers:
+            with open(os.path.join(self.mapping_folder, 'reference-{}.yml'.format(moniker)) ,'w', encoding='utf-8') as f:
+                f.write(populated_template)
 
     def _cleanup_output_folder(self):
         print('Cleaning output folder: {}'.format(self.output_folder))
