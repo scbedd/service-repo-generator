@@ -1,0 +1,9 @@
+[
+    {% for moniker in config.monikers %}
+    {
+        "language": "java",
+        "output_path": "{{ config.docset_name }}/{{ moniker }}/docs-ref-autogen",
+        "packages": []
+    }{{ "," if not loop.last }}
+    {% endfor %}
+]

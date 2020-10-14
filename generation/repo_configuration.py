@@ -16,11 +16,12 @@ class BaseRepoConfiguration:
         self.docset_folder = os.path.join(self.output_folder, self.docset_name)
         self.docs_ref_services = os.path.join(self.docset_folder, 'docs-ref-services')
         self.breadcrumb_folder = os.path.join(self.docset_folder, 'breadcrumb')
+        self.ci_config_folder = os.path.join(self.output_folder, 'ci-configs')
 
         self.docfx_dest = os.path.join(self.docset_folder , 'docfx.json')
         self.openpublishing_dest = os.path.join(self.output_folder, '.openpublishing.publish.config.json')
         self.breadcrumb_dest = os.path.join(self.breadcrumb_folder, 'toc.yml')
-
+        self.package_dest = os.path.join(self.output_folder, 'package.json')
 
     def _process_configuration(self, path_to_config):
         if path_to_config:
@@ -98,6 +99,7 @@ class BaseRepoConfiguration:
         populated_template = self.process_breadcrumb()
         with open(self.breadcrumb_dest ,'w', encoding='utf-8') as f:
             f.write(populated_template)
+
 
 
 

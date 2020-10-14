@@ -38,5 +38,5 @@ if __name__ == "__main__":
     configuration.write_docfx_template()
     configuration.write_openpublishing_config()
     configuration.write_breadcrumb()
-    
+    configuration.write_ci_configs()
     
