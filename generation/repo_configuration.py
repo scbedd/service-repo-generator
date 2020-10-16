@@ -119,6 +119,7 @@ class BaseRepoConfiguration:
                 /<moniker_n>/
                 /docs-ref-services/<moniker_1>/
                 /docs-ref-services/<moniker_n>/
+                /ci-configs/
 
 
         Returns None
@@ -151,6 +152,10 @@ class BaseRepoConfiguration:
 
         print('Creating mapping folder: {}'.format(self.mapping_folder))
         os.mkdir(self.mapping_folder)
+
+        if not os.path.exists(self.ci_config_folder):
+            print('Creating mapping folder: {}'.format(self.mapping_folder))
+            os.mkdir(self.ci_config_folder)
 
 
     def process_reference_yml(self):

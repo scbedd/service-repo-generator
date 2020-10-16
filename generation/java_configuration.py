@@ -10,7 +10,7 @@ class JavaRepoConfiguration(BaseRepoConfiguration):
         self.ci_config_folder = self.output_folder
     
     def generate_ci_configs(self):
-        """ Used to populate a package.json
+        """ Used to populate a single package.json
 
         Returns String
         """

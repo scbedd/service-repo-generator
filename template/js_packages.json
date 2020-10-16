@@ -1,0 +1,9 @@
+{
+    "target_repo": {
+      "url": "{{ config.target_doc_repo }}",
+      "branch": "master",
+      "folder": "./{{ config.docset_name }}"
+    },
+    "npm_package_sources": [
+    ]
+}

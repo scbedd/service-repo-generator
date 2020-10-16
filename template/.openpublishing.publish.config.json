@@ -12,7 +12,16 @@
           "Conceptual": "Content",
           "ManagedReference": "Content",
           "RestApi": "Content",
-          "UniversalReference": "Content"
+          "UniversalReference": "Content",
+          "JavaMember": "Content",
+          "JavaType": "Content",
+          "JavaPackage": "Content",
+          "JavaEnum": "Content",
+          "TSType": "Content",
+          "TSPackage": "Content",
+          "TSEnum": "Content",
+          "TSTypeAlias": "Content",
+          "ReferenceContainer": "Content"
         },
         "build_entry_point": "docs",
         "template_folder": "_themes",
@@ -93,5 +102,8 @@
             }
         }{{ "," if not loop.last }}
         {% endfor %}
-    ]
+    ],
+    "docs_build_engine": {
+      "name": "docfx_v3"
+    }
 }

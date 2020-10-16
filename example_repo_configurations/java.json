@@ -4,8 +4,8 @@
     "monikers": [
         "storagev12","storagev10"
     ],
-    "language": "javascript",
-    "lang": "js",
+    "language": "java",
+    "lang": "java",
     "service_label": "storage",
     "target_doc_repo": "docs-storage-java"
 }

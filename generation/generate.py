@@ -8,6 +8,7 @@ import sys
 import json
 
 from java_configuration import JavaRepoConfiguration
+from javascript_configuration import JavascriptRepoConfiguration
 
 root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", ".."))
 
@@ -27,7 +28,7 @@ if __name__ == "__main__":
     elif _get_lang(config_path).lower() == "dotnet":
         pass
     elif _get_lang(config_path).lower() == "javascript":
-        pass
+        configuration = JavascriptRepoConfiguration(config_path)
     elif _get_lang(config_path).lower() == "python":
         pass
     else:
