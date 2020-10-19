@@ -91,7 +91,7 @@
         {
             "TopLevelTOC": "docs-ref-mapping/reference-{{ moniker }}.yml",
             "ReferenceTOC": "{{ config.docset_name }}/{{ moniker }}/docs-ref-autogen/toc.yml",
-            "ReferenceTOCUrl": "/{{ config.language }}/sdk/{{ config.service_label }}/toc.json",
+            "ReferenceTOCUrl": "/azure/developer/{{ config.language }}/sdk/{{ config.service_label }}/toc.json",
             "OutputFolder": "{{ config.docset_name }}/{{ moniker }}/docs-ref-autogen/overview",
             "HideEmptyNode": false,
             "ContainerPageMetadata": {
