@@ -5,18 +5,10 @@
             {% for moniker in config.monikers %}
             {
                 "files": [
-                  "**/*.yml"
-                ],
-                "src": "{{ moniker }}/docs-ref-autogen/overview",
-                "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
-                "group": "{{ moniker }}"
-            },
-            {
-                "files": [
                     "**/*.md",
                     "**/*.yml"
                 ],
-                "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
+                "dest": "sdk/{{ config.service_label }}",
                 "group": "{{ moniker }}",
                 "src": "{{ moniker }}/docs-ref-autogen",
                 "exclude": [
@@ -36,7 +28,7 @@
                     "**/*.yml"
                 ],
                 "src": "docs-ref-services/{{ moniker }}",
-                "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
+                "dest": "sdk/{{ config.service_label }}",
                 "version": "{{ moniker }}",
                 "group": "{{ moniker }}"
             },
@@ -46,7 +38,7 @@
                     "**/toc.yml"
                 ],
                 "src": "{{ moniker }}/docs-ref-autogen",
-                "dest": "{{ config.language }}/sdk/{{ config.service_label }}",
+                "dest": "sdk/{{ config.service_label }}",
                 "group": "{{ moniker }}"
             },
             {
