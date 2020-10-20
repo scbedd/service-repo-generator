@@ -29,6 +29,8 @@ Throughout this document, examples will be sourced from this [documentation repo
 
 This [document](https://review.docs.microsoft.com/en-us/help/onboard/admin/reference/concepts/monikers?branch=master#creating-monikers) has good information on the creation and care of `monikers`.
 
+
+
 ### Using the service repo generator
 
 After creating the doc set, there will exist a documentation repository initialized with a basic publication configuration. We will immediately overwrite this with contents from the `service-repo-generator`. 
@@ -78,19 +80,12 @@ Copy-Item -Path "C:/repo/service-repo-generator/*" -Destination "C:/repo/docs-st
 ### Updating CI Targeting
 
 
-Here are example configurations for each language.
+This [folder](https://github.com/scbedd/service-repo-generator/tree/main/ci-config-examples) contains example ci-configurations for each language.
 
-- [Java]()
-- [Python]()
-- [.NET]()
-- [Javascript]()
+Populate each moniker's configuration file with the appropriate packages. For most of this document, the repo `docs-storage-java` has been utilized. In that specific case, there are _two_ monikers at play. 
 
-Populate each moniker's configuration file with the appropriate packages. For most of this document, the repo `docs-storage-js` has been utilized. In that specific case, there are _two_ monikers at play. 
-
-- Version 2.X.X
 - Version 12.X.X
-
-
+- Version 10.X.X
 
 ### Standing Up CI
 
@@ -101,4 +96,4 @@ from the documentation repository itself.
 
 Each job will generate documentation for all onboarded monikers. There is a bit of manual effort here though. As part of the service-repo generation, a `ci-configs` folder will be created. Each configuration is utilized outputs for a single moniker.
 
-< walk through on how to duplicate the CI run steps>
+TODO: walk through updating CI. Can we script this?
