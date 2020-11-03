@@ -8,4 +8,4 @@
     uid: azure.{{ config.language }}.sdk.landingPage.services.other
     landingPageType: Service
     children:
-    - '*'
+    - '**'
