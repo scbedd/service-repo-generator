@@ -13,7 +13,7 @@ class BaseRepoConfiguration:
         # general 
         self.root_dir = os.path.abspath(os.path.join(os.path.abspath(path_to_config), '..'))
         self.output_folder = os.path.abspath(os.path.join(self.root_dir, 'output'))
-        self.docset_folder = os.path.join(self.output_folder, self.docset_name)
+        self.docset_folder = os.path.join(self.output_folder)
         self.docs_ref_services = os.path.join(self.docset_folder, 'docs-ref-services')
         self.breadcrumb_folder = os.path.join(self.docset_folder, 'breadcrumb')
         self.ci_config_folder = os.path.join(self.output_folder, 'ci-configs')
@@ -111,16 +111,14 @@ class BaseRepoConfiguration:
 
         /output
             .openpublishing.publish.config.json
-            /<docset name>/
-                docfx.json
-                /breadcrumb/
-                    toc.yml
-                /<moniker_1>/
-                /<moniker_n>/
-                /docs-ref-services/<moniker_1>/
-                /docs-ref-services/<moniker_n>/
-                /ci-configs/
-
+            docfx.json
+            /breadcrumb/
+                toc.yml
+            /<moniker_1>/
+            /<moniker_n>/
+            /docs-ref-services/<moniker_1>/
+            /docs-ref-services/<moniker_n>/
+            /ci-configs/
 
         Returns None
         """
@@ -130,8 +128,8 @@ class BaseRepoConfiguration:
         print('Creating output folder: {}'.format(self.output_folder))        
         os.mkdir(self.output_folder)
 
-        print('Creating docset folder: {}'.format(self.docset_folder))
-        os.mkdir(self.docset_folder)
+        # print('Creating docset folder: {}'.format(self.docset_folder))
+        # os.mkdir(self.docset_folder)
 
         print('Creating docs-ref-services: {}'.format(self.docs_ref_services))
         os.mkdir(self.docs_ref_services)

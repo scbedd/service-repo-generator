@@ -2,7 +2,7 @@
     "docset_name": "storage-javascript",
     "docset_base_path": "azure/developer",
     "monikers": [
-        "storagev12","storagev2"
+        "azure-node-legacy", "azure-node-preview", "azure-node-latest"
     ],
     "language": "javascript",
     "lang": "js",
