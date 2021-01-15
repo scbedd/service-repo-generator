@@ -1,0 +1,11 @@
+{
+    "docset_name": "storage-javascript",
+    "docset_base_path": "azure/developer",
+    "monikers": [
+        "azure-node-legacy", "azure-node-preview", "azure-node-latest"
+    ],
+    "language": "javascript",
+    "lang": "js",
+    "service_label": "storage",
+    "target_doc_repo": "docs-storage-js"
+}
